@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :reviews, except: [:show,:index]
   end
    root to: "movies#index"
+   get '/autocomplete_movie_title' => 'home#autocomplete_movie_title'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

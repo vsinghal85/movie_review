@@ -1,10 +1,16 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index,:show]
+  autocomplete :movie, :title
   # GET /movies
   # GET /movies.json
   def index
     @movies = Movie.all
+    search = params[:search]
+    if search
+      query = "title like '%#{search}%' "
+      @movies = @movies.where(query)
+end
   end
 
   # GET /movies/1
